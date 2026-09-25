@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en"><head>
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/quarto-contrib/div-anchors-1.0.0/div-anchors.js"></script>
 <link href="../site_libs/quarto-contrib/div-anchors-1.0.0/div-anchors.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+  <meta name="generator" content="quarto-1.10.18">
 
   <title>ISLP Labs — Solution Key – Chapter 2 — Statistical Learning</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -21,10 +23,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -100,6 +105,33 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VLDZY2T3JF"></script>
+
+  <script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VLDZY2T3JF', { 'anonymize_ip': true});
+  </script>
+  
+  <script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"implied",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    ,
+  "language":"en"
+    });
+  });
+  </script> 
+    
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -204,7 +236,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-05-29</p>
+  <p class="date">Last modified: 2026-09-25</p>
 </section>
 <section>
 <section id="overview" class="title-slide slide level1 center">
@@ -227,15 +259,15 @@
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Python</a></li><li><a href="#tabset-1-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> ISLP <span class="im">import</span> load_data</span>
-<span id="cb1-2"><a></a>Wage <span class="op">=</span> load_data(<span class="st">'Wage'</span>)</span>
-<span id="cb1-3"><a></a>Smarket <span class="op">=</span> load_data(<span class="st">'Smarket'</span>)</span>
-<span id="cb1-4"><a></a>NCI60 <span class="op">=</span> load_data(<span class="st">'NCI60'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a><span class="im">from</span> ISLP <span class="im">import</span> load_data</span>
+<span id="cb1-2"><a aria-label="2"></a>Wage <span class="op">=</span> load_data(<span class="st">'Wage'</span>)</span>
+<span id="cb1-3"><a aria-label="3"></a>Smarket <span class="op">=</span> load_data(<span class="st">'Smarket'</span>)</span>
+<span id="cb1-4"><a aria-label="4"></a>NCI60 <span class="op">=</span> load_data(<span class="st">'NCI60'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-1-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(ISLR2)</span>
-<span id="cb2-2"><a></a><span class="co"># Wage, Smarket, NCI60 are loaded automatically</span></span>
-<span id="cb2-3"><a></a><span class="fu">head</span>(Wage)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a><span class="fu">library</span>(ISLR2)</span>
+<span id="cb2-2"><a aria-label="2"></a><span class="co"># Wage, Smarket, NCI60 are loaded automatically</span></span>
+<span id="cb2-3"><a aria-label="3"></a><span class="fu">head</span>(Wage)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -290,24 +322,24 @@
 <ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Python</a></li><li><a href="#tabset-2-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-2"><a></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
-<span id="cb3-3"><a></a>Wage.plot.scatter(<span class="st">'age'</span>,  <span class="st">'wage'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
-<span id="cb3-4"><a></a>Wage.plot.scatter(<span class="st">'year'</span>, <span class="st">'wage'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
-<span id="cb3-5"><a></a>edu_levels <span class="op">=</span> Wage[<span class="st">'education'</span>].cat.categories</span>
-<span id="cb3-6"><a></a>axes[<span class="dv">2</span>].boxplot(</span>
-<span id="cb3-7"><a></a>    [Wage.loc[Wage[<span class="st">'education'</span>] <span class="op">==</span> e, <span class="st">'wage'</span>] <span class="cf">for</span> e <span class="kw">in</span> edu_levels],</span>
-<span id="cb3-8"><a></a>    tick_labels<span class="op">=</span>edu_levels,  <span class="co"># matplotlib ≥3.9; was `labels=` before</span></span>
-<span id="cb3-9"><a></a>)</span>
-<span id="cb3-10"><a></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">'Education'</span>)<span class="op">;</span> axes[<span class="dv">2</span>].set_ylabel(<span class="st">'Wage'</span>)</span>
-<span id="cb3-11"><a></a>axes[<span class="dv">2</span>].tick_params(axis<span class="op">=</span><span class="st">'x'</span>, rotation<span class="op">=</span><span class="dv">45</span>)</span>
-<span id="cb3-12"><a></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a aria-label="2"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb3-3"><a aria-label="3"></a>Wage.plot.scatter(<span class="st">'age'</span>,  <span class="st">'wage'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb3-4"><a aria-label="4"></a>Wage.plot.scatter(<span class="st">'year'</span>, <span class="st">'wage'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb3-5"><a aria-label="5"></a>edu_levels <span class="op">=</span> Wage[<span class="st">'education'</span>].cat.categories</span>
+<span id="cb3-6"><a aria-label="6"></a>axes[<span class="dv">2</span>].boxplot(</span>
+<span id="cb3-7"><a aria-label="7"></a>    [Wage.loc[Wage[<span class="st">'education'</span>] <span class="op">==</span> e, <span class="st">'wage'</span>] <span class="cf">for</span> e <span class="kw">in</span> edu_levels],</span>
+<span id="cb3-8"><a aria-label="8"></a>    tick_labels<span class="op">=</span>edu_levels,  <span class="co"># matplotlib ≥3.9; was `labels=` before</span></span>
+<span id="cb3-9"><a aria-label="9"></a>)</span>
+<span id="cb3-10"><a aria-label="10"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">'Education'</span>)<span class="op">;</span> axes[<span class="dv">2</span>].set_ylabel(<span class="st">'Wage'</span>)</span>
+<span id="cb3-11"><a aria-label="11"></a>axes[<span class="dv">2</span>].tick_params(axis<span class="op">=</span><span class="st">'x'</span>, rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb3-12"><a aria-label="12"></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb4-2"><a></a><span class="fu">plot</span>(Wage<span class="sc">$</span>age,       Wage<span class="sc">$</span>wage, <span class="at">col =</span> <span class="st">"grey"</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">xlab =</span> <span class="st">"Age"</span>,       <span class="at">ylab =</span> <span class="st">"Wage"</span>)</span>
-<span id="cb4-3"><a></a><span class="fu">plot</span>(Wage<span class="sc">$</span>year,      Wage<span class="sc">$</span>wage, <span class="at">col =</span> <span class="st">"grey"</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">xlab =</span> <span class="st">"Year"</span>,      <span class="at">ylab =</span> <span class="st">"Wage"</span>)</span>
-<span id="cb4-4"><a></a><span class="fu">plot</span>(Wage<span class="sc">$</span>education, Wage<span class="sc">$</span>wage, <span class="at">col =</span> <span class="st">"grey"</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">xlab =</span> <span class="st">"Education"</span>, <span class="at">ylab =</span> <span class="st">"Wage"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb4-2"><a aria-label="2"></a><span class="fu">plot</span>(Wage<span class="sc">$</span>age,       Wage<span class="sc">$</span>wage, <span class="at">col =</span> <span class="st">"grey"</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">xlab =</span> <span class="st">"Age"</span>,       <span class="at">ylab =</span> <span class="st">"Wage"</span>)</span>
+<span id="cb4-3"><a aria-label="3"></a><span class="fu">plot</span>(Wage<span class="sc">$</span>year,      Wage<span class="sc">$</span>wage, <span class="at">col =</span> <span class="st">"grey"</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">xlab =</span> <span class="st">"Year"</span>,      <span class="at">ylab =</span> <span class="st">"Wage"</span>)</span>
+<span id="cb4-4"><a aria-label="4"></a><span class="fu">plot</span>(Wage<span class="sc">$</span>education, Wage<span class="sc">$</span>wage, <span class="at">col =</span> <span class="st">"grey"</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">xlab =</span> <span class="st">"Education"</span>, <span class="at">ylab =</span> <span class="st">"Wage"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -350,18 +382,18 @@
 <ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Python</a></li><li><a href="#tabset-3-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb5-2"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-3"><a></a></span>
-<span id="cb5-4"><a></a>X <span class="op">=</span> pd.get_dummies(Wage[[<span class="st">'age'</span>, <span class="st">'year'</span>, <span class="st">'education'</span>]], drop_first<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-5"><a></a>y <span class="op">=</span> Wage[<span class="st">'wage'</span>]</span>
-<span id="cb5-6"><a></a></span>
-<span id="cb5-7"><a></a>lm <span class="op">=</span> LinearRegression().fit(X, y)</span>
-<span id="cb5-8"><a></a><span class="bu">print</span>(lm.coef_)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-label="1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb5-2"><a aria-label="2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-3"><a aria-label="3"></a></span>
+<span id="cb5-4"><a aria-label="4"></a>X <span class="op">=</span> pd.get_dummies(Wage[[<span class="st">'age'</span>, <span class="st">'year'</span>, <span class="st">'education'</span>]], drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-5"><a aria-label="5"></a>y <span class="op">=</span> Wage[<span class="st">'wage'</span>]</span>
+<span id="cb5-6"><a aria-label="6"></a></span>
+<span id="cb5-7"><a aria-label="7"></a>lm <span class="op">=</span> LinearRegression().fit(X, y)</span>
+<span id="cb5-8"><a aria-label="8"></a><span class="bu">print</span>(lm.coef_)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-3-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> age <span class="sc">+</span> year <span class="sc">+</span> education, <span class="at">data =</span> Wage)</span>
-<span id="cb6-2"><a></a><span class="fu">summary</span>(fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> age <span class="sc">+</span> year <span class="sc">+</span> education, <span class="at">data =</span> Wage)</span>
+<span id="cb6-2"><a aria-label="2"></a><span class="fu">summary</span>(fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -398,23 +430,23 @@
 <ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Python</a></li><li><a href="#tabset-4-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb7-2"><a></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
-<span id="cb7-3"><a></a></span>
-<span id="cb7-4"><a></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
-<span id="cb7-5"><a></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb7-6"><a></a></span>
-<span id="cb7-7"><a></a>lm.fit(X_train, y_train)</span>
-<span id="cb7-8"><a></a>mse_test <span class="op">=</span> mean_squared_error(y_test, lm.predict(X_test))</span>
-<span id="cb7-9"><a></a><span class="bu">print</span>(<span class="ss">f"Test MSE: </span><span class="sc">{</span>mse_test<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-label="1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb7-2"><a aria-label="2"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
+<span id="cb7-3"><a aria-label="3"></a></span>
+<span id="cb7-4"><a aria-label="4"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb7-5"><a aria-label="5"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb7-6"><a aria-label="6"></a></span>
+<span id="cb7-7"><a aria-label="7"></a>lm.fit(X_train, y_train)</span>
+<span id="cb7-8"><a aria-label="8"></a>mse_test <span class="op">=</span> mean_squared_error(y_test, lm.predict(X_test))</span>
+<span id="cb7-9"><a aria-label="9"></a><span class="bu">print</span>(<span class="ss">f"Test MSE: </span><span class="sc">{</span>mse_test<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-4-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb8-2"><a></a>train_idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Wage), <span class="fl">0.8</span> <span class="sc">*</span> <span class="fu">nrow</span>(Wage))</span>
-<span id="cb8-3"><a></a>fit_train  <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> age <span class="sc">+</span> year <span class="sc">+</span> education, <span class="at">data =</span> Wage[train_idx, ])</span>
-<span id="cb8-4"><a></a>pred_test  <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_train, Wage[<span class="sc">-</span>train_idx, ])</span>
-<span id="cb8-5"><a></a>mse_test   <span class="ot">&lt;-</span> <span class="fu">mean</span>((Wage<span class="sc">$</span>wage[<span class="sc">-</span>train_idx] <span class="sc">-</span> pred_test)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb8-6"><a></a><span class="fu">cat</span>(<span class="st">"Test MSE:"</span>, mse_test, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb8-2"><a aria-label="2"></a>train_idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Wage), <span class="fl">0.8</span> <span class="sc">*</span> <span class="fu">nrow</span>(Wage))</span>
+<span id="cb8-3"><a aria-label="3"></a>fit_train  <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> age <span class="sc">+</span> year <span class="sc">+</span> education, <span class="at">data =</span> Wage[train_idx, ])</span>
+<span id="cb8-4"><a aria-label="4"></a>pred_test  <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_train, Wage[<span class="sc">-</span>train_idx, ])</span>
+<span id="cb8-5"><a aria-label="5"></a>mse_test   <span class="ot">&lt;-</span> <span class="fu">mean</span>((Wage<span class="sc">$</span>wage[<span class="sc">-</span>train_idx] <span class="sc">-</span> pred_test)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb8-6"><a aria-label="6"></a><span class="fu">cat</span>(<span class="st">"Test MSE:"</span>, mse_test, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -486,30 +518,30 @@
 <ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Python</a></li><li><a href="#tabset-5-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
-<span id="cb9-2"><a></a></span>
-<span id="cb9-3"><a></a><span class="co"># Example: predict stock market direction with KNN (K = 3)</span></span>
-<span id="cb9-4"><a></a>X_smarket <span class="op">=</span> Smarket[[<span class="st">'Lag1'</span>, <span class="st">'Lag2'</span>]]</span>
-<span id="cb9-5"><a></a>y_smarket <span class="op">=</span> Smarket[<span class="st">'Direction'</span>]</span>
-<span id="cb9-6"><a></a></span>
-<span id="cb9-7"><a></a>X_tr, X_te, y_tr, y_te <span class="op">=</span> train_test_split(</span>
-<span id="cb9-8"><a></a>    X_smarket, y_smarket, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb9-9"><a></a></span>
-<span id="cb9-10"><a></a>knn <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">3</span>).fit(X_tr, y_tr)</span>
-<span id="cb9-11"><a></a><span class="bu">print</span>(<span class="st">"Test accuracy:"</span>, knn.score(X_te, y_te).<span class="bu">round</span>(<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-label="1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb9-2"><a aria-label="2"></a></span>
+<span id="cb9-3"><a aria-label="3"></a><span class="co"># Example: predict stock market direction with KNN (K = 3)</span></span>
+<span id="cb9-4"><a aria-label="4"></a>X_smarket <span class="op">=</span> Smarket[[<span class="st">'Lag1'</span>, <span class="st">'Lag2'</span>]]</span>
+<span id="cb9-5"><a aria-label="5"></a>y_smarket <span class="op">=</span> Smarket[<span class="st">'Direction'</span>]</span>
+<span id="cb9-6"><a aria-label="6"></a></span>
+<span id="cb9-7"><a aria-label="7"></a>X_tr, X_te, y_tr, y_te <span class="op">=</span> train_test_split(</span>
+<span id="cb9-8"><a aria-label="8"></a>    X_smarket, y_smarket, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-9"><a aria-label="9"></a></span>
+<span id="cb9-10"><a aria-label="10"></a>knn <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">3</span>).fit(X_tr, y_tr)</span>
+<span id="cb9-11"><a aria-label="11"></a><span class="bu">print</span>(<span class="st">"Test accuracy:"</span>, knn.score(X_te, y_te).<span class="bu">round</span>(<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-5-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">library</span>(class)</span>
-<span id="cb10-2"><a></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb10-3"><a></a>train_idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Smarket), <span class="fl">0.8</span> <span class="sc">*</span> <span class="fu">nrow</span>(Smarket))</span>
-<span id="cb10-4"><a></a></span>
-<span id="cb10-5"><a></a>knn_pred <span class="ot">&lt;-</span> <span class="fu">knn</span>(</span>
-<span id="cb10-6"><a></a>  <span class="at">train =</span> Smarket[train_idx,  <span class="fu">c</span>(<span class="st">"Lag1"</span>, <span class="st">"Lag2"</span>)],</span>
-<span id="cb10-7"><a></a>  <span class="at">test  =</span> Smarket[<span class="sc">-</span>train_idx, <span class="fu">c</span>(<span class="st">"Lag1"</span>, <span class="st">"Lag2"</span>)],</span>
-<span id="cb10-8"><a></a>  <span class="at">cl    =</span> Smarket<span class="sc">$</span>Direction[train_idx],</span>
-<span id="cb10-9"><a></a>  <span class="at">k     =</span> <span class="dv">3</span></span>
-<span id="cb10-10"><a></a>)</span>
-<span id="cb10-11"><a></a><span class="fu">mean</span>(knn_pred <span class="sc">==</span> Smarket<span class="sc">$</span>Direction[<span class="sc">-</span>train_idx])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-label="1"></a><span class="fu">library</span>(class)</span>
+<span id="cb10-2"><a aria-label="2"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb10-3"><a aria-label="3"></a>train_idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Smarket), <span class="fl">0.8</span> <span class="sc">*</span> <span class="fu">nrow</span>(Smarket))</span>
+<span id="cb10-4"><a aria-label="4"></a></span>
+<span id="cb10-5"><a aria-label="5"></a>knn_pred <span class="ot">&lt;-</span> <span class="fu">knn</span>(</span>
+<span id="cb10-6"><a aria-label="6"></a>  <span class="at">train =</span> Smarket[train_idx,  <span class="fu">c</span>(<span class="st">"Lag1"</span>, <span class="st">"Lag2"</span>)],</span>
+<span id="cb10-7"><a aria-label="7"></a>  <span class="at">test  =</span> Smarket[<span class="sc">-</span>train_idx, <span class="fu">c</span>(<span class="st">"Lag1"</span>, <span class="st">"Lag2"</span>)],</span>
+<span id="cb10-8"><a aria-label="8"></a>  <span class="at">cl    =</span> Smarket<span class="sc">$</span>Direction[train_idx],</span>
+<span id="cb10-9"><a aria-label="9"></a>  <span class="at">k     =</span> <span class="dv">3</span></span>
+<span id="cb10-10"><a aria-label="10"></a>)</span>
+<span id="cb10-11"><a aria-label="11"></a><span class="fu">mean</span>(knn_pred <span class="sc">==</span> Smarket<span class="sc">$</span>Direction[<span class="sc">-</span>train_idx])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -913,7 +945,7 @@ window.addEventListener("load", alignEquationAnchorsWithDefault);
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

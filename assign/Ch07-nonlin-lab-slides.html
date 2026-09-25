@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/tabby.min.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/quarto-contrib/div-anchors-1.0.0/div-anchors.js"></script>
 <link href="site_libs/quarto-contrib/div-anchors-1.0.0/div-anchors.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+  <meta name="generator" content="quarto-1.10.18">
 
   <title>ISLP Labs — Student Worksheet – Non-Linear Modeling</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -21,10 +23,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -100,6 +105,33 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VLDZY2T3JF"></script>
+
+  <script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VLDZY2T3JF', { 'anonymize_ip': true});
+  </script>
+  
+  <script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"implied",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    ,
+  "language":"en"
+    });
+  });
+  </script> 
+    
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -207,7 +239,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-05-29</p>
+  <p class="date">Last modified: 2026-09-25</p>
 </section>
 <section class="slide level2">
 
@@ -224,31 +256,31 @@
 <section id="setup" class="slide level2">
 <h2>Setup</h2>
 <p>As usual, we start with some of our standard imports.</p>
-<div id="f5f95a00" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np, pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a></a><span class="im">from</span> matplotlib.pyplot <span class="im">import</span> subplots</span>
-<span id="cb1-3"><a></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb1-4"><a></a><span class="im">from</span> ISLP <span class="im">import</span> load_data</span>
-<span id="cb1-5"><a></a><span class="im">from</span> ISLP.models <span class="im">import</span> (summarize,</span>
-<span id="cb1-6"><a></a>                         poly,</span>
-<span id="cb1-7"><a></a>                         ModelSpec <span class="im">as</span> MS)</span>
-<span id="cb1-8"><a></a><span class="im">from</span> statsmodels.stats.anova <span class="im">import</span> anova_lm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="beb43c15" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np, pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a aria-label="2"></a><span class="im">from</span> matplotlib.pyplot <span class="im">import</span> subplots</span>
+<span id="cb1-3"><a aria-label="3"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb1-4"><a aria-label="4"></a><span class="im">from</span> ISLP <span class="im">import</span> load_data</span>
+<span id="cb1-5"><a aria-label="5"></a><span class="im">from</span> ISLP.models <span class="im">import</span> (summarize,</span>
+<span id="cb1-6"><a aria-label="6"></a>                         poly,</span>
+<span id="cb1-7"><a aria-label="7"></a>                         ModelSpec <span class="im">as</span> MS)</span>
+<span id="cb1-8"><a aria-label="8"></a><span class="im">from</span> statsmodels.stats.anova <span class="im">import</span> anova_lm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We again collect the new imports needed for this lab. Many of these are developed specifically for the <code>ISLP</code> package.</p>
-<div id="6bb49573" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">from</span> pygam <span class="im">import</span> (s <span class="im">as</span> s_gam,</span>
-<span id="cb2-2"><a></a>                   l <span class="im">as</span> l_gam,</span>
-<span id="cb2-3"><a></a>                   f <span class="im">as</span> f_gam,</span>
-<span id="cb2-4"><a></a>                   LinearGAM,</span>
-<span id="cb2-5"><a></a>                   LogisticGAM)</span>
-<span id="cb2-6"><a></a></span>
-<span id="cb2-7"><a></a><span class="im">from</span> ISLP.transforms <span class="im">import</span> (BSpline,</span>
-<span id="cb2-8"><a></a>                             NaturalSpline)</span>
-<span id="cb2-9"><a></a><span class="im">from</span> ISLP.models <span class="im">import</span> bs, ns</span>
-<span id="cb2-10"><a></a><span class="im">from</span> ISLP.pygam <span class="im">import</span> (approx_lam,</span>
-<span id="cb2-11"><a></a>                        degrees_of_freedom,</span>
-<span id="cb2-12"><a></a>                        plot <span class="im">as</span> plot_gam,</span>
-<span id="cb2-13"><a></a>                        anova <span class="im">as</span> anova_gam)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="ca1ba91d" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a><span class="im">from</span> pygam <span class="im">import</span> (s <span class="im">as</span> s_gam,</span>
+<span id="cb2-2"><a aria-label="2"></a>                   l <span class="im">as</span> l_gam,</span>
+<span id="cb2-3"><a aria-label="3"></a>                   f <span class="im">as</span> f_gam,</span>
+<span id="cb2-4"><a aria-label="4"></a>                   LinearGAM,</span>
+<span id="cb2-5"><a aria-label="5"></a>                   LogisticGAM)</span>
+<span id="cb2-6"><a aria-label="6"></a></span>
+<span id="cb2-7"><a aria-label="7"></a><span class="im">from</span> ISLP.transforms <span class="im">import</span> (BSpline,</span>
+<span id="cb2-8"><a aria-label="8"></a>                             NaturalSpline)</span>
+<span id="cb2-9"><a aria-label="9"></a><span class="im">from</span> ISLP.models <span class="im">import</span> bs, ns</span>
+<span id="cb2-10"><a aria-label="10"></a><span class="im">from</span> ISLP.pygam <span class="im">import</span> (approx_lam,</span>
+<span id="cb2-11"><a aria-label="11"></a>                        degrees_of_freedom,</span>
+<span id="cb2-12"><a aria-label="12"></a>                        plot <span class="im">as</span> plot_gam,</span>
+<span id="cb2-13"><a aria-label="13"></a>                        anova <span class="im">as</span> anova_gam)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="polynomial-regression-and-step-functions" class="slide level2">
@@ -664,7 +696,7 @@ window.addEventListener("load", alignEquationAnchorsWithDefault);
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

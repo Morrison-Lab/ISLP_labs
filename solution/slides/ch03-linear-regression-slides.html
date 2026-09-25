@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en"><head>
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/quarto-contrib/div-anchors-1.0.0/div-anchors.js"></script>
 <link href="../site_libs/quarto-contrib/div-anchors-1.0.0/div-anchors.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+  <meta name="generator" content="quarto-1.10.18">
 
   <title>ISLP Labs — Solution Key – Chapter 3 — Linear Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -21,10 +23,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -100,6 +105,33 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VLDZY2T3JF"></script>
+
+  <script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VLDZY2T3JF', { 'anonymize_ip': true});
+  </script>
+  
+  <script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"implied",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    ,
+  "language":"en"
+    });
+  });
+  </script> 
+    
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -204,7 +236,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-05-29</p>
+  <p class="date">Last modified: 2026-09-25</p>
 </section>
 <section>
 <section id="overview" class="title-slide slide level1 center">
@@ -229,16 +261,16 @@
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Python</a></li><li><a href="#tabset-1-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a></a>ad <span class="op">=</span> pd.read_csv(</span>
-<span id="cb1-3"><a></a>    <span class="st">"https://www.statlearning.com/s/Advertising.csv"</span>,</span>
-<span id="cb1-4"><a></a>    index_col<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb1-5"><a></a>)</span>
-<span id="cb1-6"><a></a>ad.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a aria-label="2"></a>ad <span class="op">=</span> pd.read_csv(</span>
+<span id="cb1-3"><a aria-label="3"></a>    <span class="st">"https://www.statlearning.com/s/Advertising.csv"</span>,</span>
+<span id="cb1-4"><a aria-label="4"></a>    index_col<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb1-5"><a aria-label="5"></a>)</span>
+<span id="cb1-6"><a aria-label="6"></a>ad.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-1-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>ad <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://www.statlearning.com/s/Advertising.csv"</span>)[, <span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb2-2"><a></a><span class="fu">head</span>(ad)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a>ad <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://www.statlearning.com/s/Advertising.csv"</span>)[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb2-2"><a aria-label="2"></a><span class="fu">head</span>(ad)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -273,15 +305,15 @@
 <ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Python</a></li><li><a href="#tabset-2-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb3-2"><a></a>fit_tv <span class="op">=</span> smf.ols(<span class="st">"sales ~ TV"</span>, data<span class="op">=</span>ad).fit()</span>
-<span id="cb3-3"><a></a>fit_tv.params         <span class="co"># coefficient estimates</span></span>
-<span id="cb3-4"><a></a>fit_tv.bse            <span class="co"># standard errors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb3-2"><a aria-label="2"></a>fit_tv <span class="op">=</span> smf.ols(<span class="st">"sales ~ TV"</span>, data<span class="op">=</span>ad).fit()</span>
+<span id="cb3-3"><a aria-label="3"></a>fit_tv.params         <span class="co"># coefficient estimates</span></span>
+<span id="cb3-4"><a aria-label="4"></a>fit_tv.bse            <span class="co"># standard errors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>fit_tv <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> TV, <span class="at">data =</span> ad)</span>
-<span id="cb4-2"><a></a><span class="fu">coef</span>(fit_tv)</span>
-<span id="cb4-3"><a></a><span class="fu">summary</span>(fit_tv)<span class="sc">$</span>coefficients[, <span class="st">"Std. Error"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a>fit_tv <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> TV, <span class="at">data =</span> ad)</span>
+<span id="cb4-2"><a aria-label="2"></a><span class="fu">coef</span>(fit_tv)</span>
+<span id="cb4-3"><a aria-label="3"></a><span class="fu">summary</span>(fit_tv)<span class="sc">$</span>coefficients[, <span class="st">"Std. Error"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -303,10 +335,10 @@
 <ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Python</a></li><li><a href="#tabset-3-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="bu">print</span>(fit_tv.summary().tables[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-label="1"></a><span class="bu">print</span>(fit_tv.summary().tables[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-3-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">summary</span>(fit_tv)<span class="sc">$</span>coefficients</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a><span class="fu">summary</span>(fit_tv)<span class="sc">$</span>coefficients</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -337,12 +369,12 @@
 <ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Python</a></li><li><a href="#tabset-4-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>fit_full <span class="op">=</span> smf.ols(<span class="st">"sales ~ TV + radio + newspaper"</span>, data<span class="op">=</span>ad).fit()</span>
-<span id="cb7-2"><a></a>fit_full.params</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-label="1"></a>fit_full <span class="op">=</span> smf.ols(<span class="st">"sales ~ TV + radio + newspaper"</span>, data<span class="op">=</span>ad).fit()</span>
+<span id="cb7-2"><a aria-label="2"></a>fit_full.params</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-4-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>fit_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> TV <span class="sc">+</span> radio <span class="sc">+</span> newspaper, <span class="at">data =</span> ad)</span>
-<span id="cb8-2"><a></a><span class="fu">coef</span>(fit_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a>fit_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> TV <span class="sc">+</span> radio <span class="sc">+</span> newspaper, <span class="at">data =</span> ad)</span>
+<span id="cb8-2"><a aria-label="2"></a><span class="fu">coef</span>(fit_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -364,10 +396,10 @@
 <ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Python</a></li><li><a href="#tabset-5-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="bu">print</span>(fit_full.summary().tables[<span class="dv">0</span>])    <span class="co"># F-statistic + p-value</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-label="1"></a><span class="bu">print</span>(fit_full.summary().tables[<span class="dv">0</span>])    <span class="co"># F-statistic + p-value</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-5-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">summary</span>(fit_full)<span class="sc">$</span>fstatistic</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-label="1"></a><span class="fu">summary</span>(fit_full)<span class="sc">$</span>fstatistic</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -400,14 +432,14 @@
 <ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Python</a></li><li><a href="#tabset-6-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>credit <span class="op">=</span> pd.read_csv(<span class="st">"https://www.statlearning.com/s/Credit.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb11-2"><a></a>fit_eth <span class="op">=</span> smf.ols(<span class="st">"Balance ~ C(Ethnicity)"</span>, data<span class="op">=</span>credit).fit()</span>
-<span id="cb11-3"><a></a>fit_eth.params</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-label="1"></a>credit <span class="op">=</span> pd.read_csv(<span class="st">"https://www.statlearning.com/s/Credit.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-2"><a aria-label="2"></a>fit_eth <span class="op">=</span> smf.ols(<span class="st">"Balance ~ C(Ethnicity)"</span>, data<span class="op">=</span>credit).fit()</span>
+<span id="cb11-3"><a aria-label="3"></a>fit_eth.params</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>credit <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://www.statlearning.com/s/Credit.csv"</span>)[, <span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb12-2"><a></a>fit_eth <span class="ot">&lt;-</span> <span class="fu">lm</span>(Balance <span class="sc">~</span> Ethnicity, <span class="at">data =</span> credit)</span>
-<span id="cb12-3"><a></a><span class="fu">coef</span>(fit_eth)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a>credit <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://www.statlearning.com/s/Credit.csv"</span>)[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb12-2"><a aria-label="2"></a>fit_eth <span class="ot">&lt;-</span> <span class="fu">lm</span>(Balance <span class="sc">~</span> Ethnicity, <span class="at">data =</span> credit)</span>
+<span id="cb12-3"><a aria-label="3"></a><span class="fu">coef</span>(fit_eth)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -429,12 +461,12 @@
 <ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1">Python</a></li><li><a href="#tabset-7-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-7-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a>fit_int <span class="op">=</span> smf.ols(<span class="st">"sales ~ TV * radio"</span>, data<span class="op">=</span>ad).fit()</span>
-<span id="cb13-2"><a></a>fit_int.params</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a aria-label="1"></a>fit_int <span class="op">=</span> smf.ols(<span class="st">"sales ~ TV * radio"</span>, data<span class="op">=</span>ad).fit()</span>
+<span id="cb13-2"><a aria-label="2"></a>fit_int.params</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-7-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>fit_int <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> TV <span class="sc">*</span> radio, <span class="at">data =</span> ad)</span>
-<span id="cb14-2"><a></a><span class="fu">coef</span>(fit_int)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-label="1"></a>fit_int <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> TV <span class="sc">*</span> radio, <span class="at">data =</span> ad)</span>
+<span id="cb14-2"><a aria-label="2"></a><span class="fu">coef</span>(fit_int)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -449,12 +481,12 @@
 <ul id="tabset-8" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-8-1">Python</a></li><li><a href="#tabset-8-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-8-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>fit_poly <span class="op">=</span> smf.ols(<span class="st">"sales ~ TV + I(TV**2)"</span>, data<span class="op">=</span>ad).fit()</span>
-<span id="cb15-2"><a></a>fit_poly.params</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a aria-label="1"></a>fit_poly <span class="op">=</span> smf.ols(<span class="st">"sales ~ TV + I(TV**2)"</span>, data<span class="op">=</span>ad).fit()</span>
+<span id="cb15-2"><a aria-label="2"></a>fit_poly.params</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-8-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>fit_poly <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> TV <span class="sc">+</span> <span class="fu">I</span>(TV<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> ad)</span>
-<span id="cb16-2"><a></a><span class="fu">coef</span>(fit_poly)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-label="1"></a>fit_poly <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales <span class="sc">~</span> TV <span class="sc">+</span> <span class="fu">I</span>(TV<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> ad)</span>
+<span id="cb16-2"><a aria-label="2"></a><span class="fu">coef</span>(fit_poly)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -471,13 +503,13 @@
 <ul id="tabset-9" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-9-1">Python</a></li><li><a href="#tabset-9-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-9-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb17-2"><a></a>plt.scatter(fit_full.fittedvalues, fit_full.resid, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb17-3"><a></a>plt.axhline(<span class="dv">0</span>, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb17-4"><a></a>plt.xlabel(<span class="st">"Fitted value"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Residual"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a aria-label="1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb17-2"><a aria-label="2"></a>plt.scatter(fit_full.fittedvalues, fit_full.resid, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb17-3"><a aria-label="3"></a>plt.axhline(<span class="dv">0</span>, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-4"><a aria-label="4"></a>plt.xlabel(<span class="st">"Fitted value"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Residual"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-9-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">plot</span>(fit_full, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a><span class="fu">plot</span>(fit_full, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -511,15 +543,15 @@
 <ul id="tabset-10" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-10-1">Python</a></li><li><a href="#tabset-10-2">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-10-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb19-2"><a></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> variance_inflation_factor</span>
-<span id="cb19-3"><a></a>X <span class="op">=</span> sm.add_constant(credit[[<span class="st">"Limit"</span>, <span class="st">"Rating"</span>, <span class="st">"Age"</span>]])</span>
-<span id="cb19-4"><a></a>[variance_inflation_factor(X.values, i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, X.shape[<span class="dv">1</span>])]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a aria-label="1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb19-2"><a aria-label="2"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> variance_inflation_factor</span>
+<span id="cb19-3"><a aria-label="3"></a>X <span class="op">=</span> sm.add_constant(credit[[<span class="st">"Limit"</span>, <span class="st">"Rating"</span>, <span class="st">"Age"</span>]])</span>
+<span id="cb19-4"><a aria-label="4"></a>[variance_inflation_factor(X.values, i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, X.shape[<span class="dv">1</span>])]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-10-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">library</span>(car)</span>
-<span id="cb20-2"><a></a>fit_credit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Balance <span class="sc">~</span> Limit <span class="sc">+</span> Rating <span class="sc">+</span> Age, <span class="at">data =</span> credit)</span>
-<span id="cb20-3"><a></a><span class="fu">vif</span>(fit_credit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-label="1"></a><span class="fu">library</span>(car)</span>
+<span id="cb20-2"><a aria-label="2"></a>fit_credit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Balance <span class="sc">~</span> Limit <span class="sc">+</span> Rating <span class="sc">+</span> Age, <span class="at">data =</span> credit)</span>
+<span id="cb20-3"><a aria-label="3"></a><span class="fu">vif</span>(fit_credit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -934,7 +966,7 @@ window.addEventListener("load", alignEquationAnchorsWithDefault);
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
