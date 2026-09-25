@@ -31,6 +31,9 @@ filters:
 website:
   title: "ISLP Labs"
   description: "Quarto handouts for the *Introduction to Statistical Learning with Applications in Python* labs."
+  google-analytics: "G-VLDZY2T3JF"
+  cookie-consent:
+    type: implied
   back-to-top-navigation: true
   page-navigation: true
   reader-mode: true
