@@ -10,7 +10,8 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/quarto-contrib/div-anchors-1.0.0/div-anchors.js"></script>
-<link href="site_libs/quarto-contrib/div-anchors-1.0.0/div-anchors.css" rel="stylesheet"><meta charset="utf-8">
+<link href="site_libs/quarto-contrib/div-anchors-1.0.0/div-anchors.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/code-language-labels-1.0.0/code-language-labels.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.18">
 
   <title>ISLP Labs — Student Worksheet – Non-Linear Modeling</title>
@@ -239,7 +240,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">Last modified: 2026-09-25</p>
+  <p class="date">Last modified: 2026-09-28</p>
 </section>
 <section class="slide level2">
 
@@ -256,7 +257,7 @@
 <section id="setup" class="slide level2">
 <h2>Setup</h2>
 <p>As usual, we start with some of our standard imports.</p>
-<div id="beb43c15" class="cell" data-execution_count="1">
+<div id="05734cd7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np, pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a aria-label="2"></a><span class="im">from</span> matplotlib.pyplot <span class="im">import</span> subplots</span>
 <span id="cb1-3"><a aria-label="3"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
@@ -267,7 +268,7 @@
 <span id="cb1-8"><a aria-label="8"></a><span class="im">from</span> statsmodels.stats.anova <span class="im">import</span> anova_lm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We again collect the new imports needed for this lab. Many of these are developed specifically for the <code>ISLP</code> package.</p>
-<div id="ca1ba91d" class="cell" data-execution_count="2">
+<div id="b54aa6b3" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a><span class="im">from</span> pygam <span class="im">import</span> (s <span class="im">as</span> s_gam,</span>
 <span id="cb2-2"><a aria-label="2"></a>                   l <span class="im">as</span> l_gam,</span>
 <span id="cb2-3"><a aria-label="3"></a>                   f <span class="im">as</span> f_gam,</span>
