@@ -26,6 +26,7 @@ filters:
   - d-morrison/div-anchors
   - d-morrison/equation-anchors
   - d-morrison/callouty-theorem
+  - d-morrison/code-language-labels
   - coatless-quarto/custom-callout
 
 website:
